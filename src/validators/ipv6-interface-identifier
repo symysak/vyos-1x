@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+# Validator used to check interface identifier for IPv6 SLAAC
+
+from sys import argv
+from sys import exit
+import re
+
+if __name__ == '__main__':
+    if len(argv) != 2:
+        exit(1)
+
+    id = argv[1]
+
+    pattern = re.compile(r'^([0-9a-fA-F]{4}:){3}[0-9a-fA-F]{4}$')
+    if pattern.match(id):
+        exit(0)
+
+    exit(1)
